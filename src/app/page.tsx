@@ -7,7 +7,7 @@ export default function Home() {
       {/* Existing content */}
       
       {/* Add this Link somewhere inside your return statement */}
-      
+        <Link href="/gallery">Gallery</Link> 
       {/* More existing content */}
     </main>
   );
