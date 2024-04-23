@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import ShowPreLoad from '@/components/showPreLoad';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {/* Existing content */}
-      
-      {/* Add this Link somewhere inside your return statement */}
-        <Link href="/gallery">Gallery</Link> 
-      {/* More existing content */}
-    </main>
+    <div>
+      <ShowPreLoad></ShowPreLoad>
+      <main className="Home">
+        <Link href="/gallery">Gallery</Link>
+      </main>
+    </div>
   );
 }
