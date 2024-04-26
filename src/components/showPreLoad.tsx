@@ -20,15 +20,16 @@ export default function ShowPreLoad() {
 
   const handlePreloaderComplete = () => {
     // preload complete
-    setLoading(false);
-    setPreloaderShown(true);
+    setTimeout(() => {
+      setLoading(false);
+      setPreloaderShown(true);
+    }, 500);
   };
 
   
 
   return (
     <div>
-      {loading && <Preloader onComplete={handlePreloaderComplete} />}
     </div>
   );
 }

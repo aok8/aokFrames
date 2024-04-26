@@ -26,3 +26,6 @@ body {
     text-wrap: balance;
   }
 }
+svg {
+  width: 50em;
+}

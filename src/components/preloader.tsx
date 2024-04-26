@@ -10,7 +10,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     const text = "AOKFrames";
     const controls = useAnimation();
     const backgroundControls = useAnimation();
-    const loadingPageColor = "#282828";
+    const loadingPageColor = "#f1efe9";
     const textColor = "#f1efe9";
 
     const container = {
