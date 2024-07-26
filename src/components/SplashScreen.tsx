@@ -4,6 +4,7 @@ import anime from "animejs";
 import '@/styles/globals.css';
 import SplashLogo from './SplashLogo';
 
+
 const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -23,31 +24,31 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
       easing: 'easeInOutSine',
       targets: '#logo #a11',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: 100
     }, '-=50') // Offset at 0 to chain animations
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #a12',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: 200
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #a13',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: 200
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #a2',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 100
+      duration: 250
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #o',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 700
+      duration: 500
     }, '+=50')
     .add({
       easing: 'easeInOutSine',
@@ -107,13 +108,13 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
       easing: 'easeInOutSine',
       targets: '#logo #rames1',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 400
+      duration: 300
     }, '+=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames2',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 500
+      duration: 200
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
