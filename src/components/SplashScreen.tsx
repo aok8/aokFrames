@@ -4,11 +4,26 @@ import anime from "animejs";
 import '@/styles/globals.css';
 import SplashLogo from './SplashLogo';
 
-
 const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   const animate = () => {
+    const desiredTotalDuration = 6000; // Total duration for the entire animation in milliseconds
+
+    // Original durations for each animation step
+    const originalDurations = [
+      500, 100, 200, 200, 250, 500, 200, 200, 200, 300, 300, 200, 200, 200, 300, 300, 550, 400, 400, 300, 500, 500, 400, 300, 300
+    ];
+
+    // Calculate the total original duration
+    const totalOriginalDuration = originalDurations.reduce((acc, duration) => acc + duration, 0);
+
+    // Calculate the scaling factor
+    const scalingFactor = desiredTotalDuration / totalOriginalDuration;
+
+    // Scale each original duration
+    const scaledDurations = originalDurations.map(duration => duration * scalingFactor);
+
     anime.timeline({
       easing: 'easeInOutSine',
       targets: '#logo',
@@ -16,160 +31,160 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
     })
     .add({
       targets: '#logo',
-      opacity: [0, 1], // Animate opacity from 0 to 1
-      duration: 500, // Duration of the opacity animation
+      opacity: [0, 1],
+      duration: scaledDurations[0],
       easing: 'linear'
     })
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #a11',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 100
-    }, '-=50') // Offset at 0 to chain animations
+      duration: scaledDurations[1]
+    }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #a12',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[2]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #a13',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[3]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #a2',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 250
+      duration: scaledDurations[4]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #o',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 500
+      duration: scaledDurations[5]
     }, '+=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #k11',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[6]
     }, '+=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #k12',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[7]
     }, '-=100')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #k13',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[8]
     }, '-=100')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #k2',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[9]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #k3',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[10]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #f1',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[11]
     }, '+=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #f21',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[12]
     }, '-=100')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #f22',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[13]
     }, '-=100')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #f3',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[14]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames1',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[15]
     }, '+=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames2',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 200
+      duration: scaledDurations[16]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames3',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[17]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames4',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[18]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames5',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[19]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames6',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 500
+      duration: scaledDurations[20]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames7',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 400
+      duration: scaledDurations[21]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames8',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[22]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo #rames9',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 300
+      duration: scaledDurations[23]
     }, '-=50')
     .add({
       easing: 'easeInOutSine',
       targets: '#logo',
       opacity: 0,
       duration: 1000
-    },'+=50')
+    }, '+=50')
     .add({
       targets: '#splashScreen',
-      backgroundColor: '#f1efe9', // Change to black
+      backgroundColor: '#f1efe9',
       duration: 2000, // Duration over which the color change occurs
       easing: 'linear',  // Use a linear easing for smooth color transition
-      endDelay: 1000 // This will wait for 0.18 seconds before hiding the element
+      endDelay: 1000 // This will wait before hiding the element
     });
   }
 
