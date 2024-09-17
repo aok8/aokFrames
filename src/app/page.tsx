@@ -154,14 +154,15 @@ export default function Home() {
         animate='show'
       >
         <div
-          className={`text-xl text-yellow-200 font-bold underline ${pacifico.className}`}
+          className={`text-xl text-[#bcb382] font-bold underline ${pacifico.className}`}
         >
-          BuildPainting
+          AOKFrames Photography
         </div>
-        <ul className='w-[300px] flex justify-between items-center'>
-          <li>Home</li>
-          <li>Services</li>
-          <li>Destination</li>
+        <ul className='w-[300px] text-[#09814a] flex justify-between items-center'>
+          <li>About Me</li>
+          <li>Galleries</li>
+          <li>Prints</li>
+          <li>Contact Me</li>
         </ul>
       </motion.nav>
 
@@ -180,18 +181,15 @@ export default function Home() {
           </motion.h1>
         </motion.div>
         <motion.p
-          className='absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[#eaeaea] text-xs font-medium'
+          className='absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[#eaeaea] text-s font-medium'
           variants={textParagraph}
           initial='hidden'
           animate='show'
         >
-          <span className='text-yellow-200'>
-            The art of painting is a highly esteemed and revered form of
-            artistic expression. It is a discipline that requires great skill,
-            technique, and creativity.
+          <span className='text-[#bcb382]'>
+            I am a Seattle based photographer shooting both digital and film.
           </span>{' '}
-          Paintings have been created throughout history, serving as a means of
-          communication, documentation, and aesthetic enjoyment.
+          Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
         </motion.p>
         <motion.div
           className='relative left-[25%]'
