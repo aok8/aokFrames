@@ -113,7 +113,7 @@ export default function Home() {
   };
 
   return (
-    <main className='h-screen px-4 overflow-hidden'>
+    <main className='h-screen px-4 overflow-hidden bg-[#2D4739]'>
       <motion.div
         className='absolute inset-0 w-screen h-screen z-0'
         variants={bgAnimate}
@@ -156,10 +156,10 @@ export default function Home() {
           animate='show'
         >
           <motion.h1
-            className={`text-9xl text-[#eaeaea] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
+            className={`text-9xl text-[#bcb382] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
             variants={textAnimate2(-150)}
           >
-            PAINTING
+            Learning from
           </motion.h1>
         </motion.div>
         <motion.p
@@ -183,7 +183,7 @@ export default function Home() {
           animate='show'
         >
           <motion.h1
-            className='text-9xl text-yellow-200 font-semibold tracking-tighter z-10'
+            className='text-9xl text-[#09814a] font-semibold tracking-tighter z-10'
             variants={textAnimate2(100)}
           >
             EXPERIENCE

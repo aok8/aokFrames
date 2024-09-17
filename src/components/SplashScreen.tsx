@@ -181,7 +181,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
     }, '+=50')
     .add({
       targets: '#splashScreen',
-      backgroundColor: '#f1efe9',
+      backgroundColor: '#2D4739',
       duration: 2000, // Duration over which the color change occurs
       easing: 'linear',  // Use a linear easing for smooth color transition
       endDelay: 1000 // This will wait before hiding the element
