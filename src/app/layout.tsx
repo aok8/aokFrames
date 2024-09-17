@@ -37,7 +37,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={dancingScript.className}>
+      <body className={dancingScript.className}
+      style={{ backgroundColor: '#2D4739' }}>
         {isLoading && isHome ? (
           <SplashScreen finishLoading={() => setIsLoading(false)}/>
         ) : (

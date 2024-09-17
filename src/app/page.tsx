@@ -112,8 +112,25 @@ export default function Home() {
     },
   };
 
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: 1.5, // Adjust duration as needed
+        ease: 'easeInOut',
+      },
+    },
+  };
+
   return (
-    <main className='h-screen px-4 overflow-hidden bg-[#2D4739]'>
+    <motion.main
+      className='h-screen px-4 overflow-hidden'
+      style={{ backgroundColor: '#2D4739' }}
+      variants={fadeIn}
+      initial='hidden'
+      animate='show'
+    >
       <motion.div
         className='absolute inset-0 w-screen h-screen z-0'
         variants={bgAnimate}
@@ -234,6 +251,6 @@ export default function Home() {
           />
         </motion.div>
       </motion.div>
-    </main>
+    </motion.main>
   );
 }
