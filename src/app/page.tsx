@@ -61,7 +61,7 @@ export default function Home() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.6,
+        staggerChildren: 0.3,
         delayChildren: 3.6,
         ease: [0.25, 0.4, 0.25, 1],
       },
@@ -126,7 +126,7 @@ export default function Home() {
   return (
     <motion.main
       className='h-screen px-4 overflow-hidden'
-      style={{ backgroundColor: '#2D4739' }}
+      style={{ backgroundColor: 'var(--main-bg-color)' }}
       variants={fadeIn}
       initial='hidden'
       animate='show'
@@ -154,13 +154,14 @@ export default function Home() {
         animate='show'
       >
         <div
-          className={`text-xl text-[#bcb382] font-bold underline ${pacifico.className}`}
+          className={`text-xl text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
         >
           AOKFrames Photography
         </div>
-        <ul className='w-[300px] text-[#09814a] flex justify-between items-center'>
+        <ul className='w-[300px] text-[var(--accent-color)] flex justify-between items-center'>
           <li>About Me</li>
           <li>Galleries</li>
+          <li>Blog</li>
           <li>Prints</li>
           <li>Contact Me</li>
         </ul>
@@ -174,19 +175,19 @@ export default function Home() {
           animate='show'
         >
           <motion.h1
-            className={`text-9xl text-[#bcb382] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
+            className={`text-9xl text-[var(--accent-color)] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
             variants={textAnimate2(-150)}
           >
             Learning from
           </motion.h1>
         </motion.div>
         <motion.p
-          className='absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[#eaeaea] text-s font-medium'
+          className='absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[var(--text-color)] text-s font-medium'
           variants={textParagraph}
           initial='hidden'
           animate='show'
         >
-          <span className='text-[#bcb382]'>
+          <span className='text-[var(--highlight-color)]'>
             I am a Seattle based photographer shooting both digital and film.
           </span>{' '}
           Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
@@ -198,7 +199,7 @@ export default function Home() {
           animate='show'
         >
           <motion.h1
-            className='text-9xl text-[#09814a] font-semibold tracking-tighter z-10'
+            className='text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10'
             variants={textAnimate2(100)}
           >
             EXPERIENCE

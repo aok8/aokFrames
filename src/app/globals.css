@@ -6,6 +6,12 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --splash-color: #77A07E;
+  --main-bg-color: #2D4739;
+  --secondary-color: #5E8EA5;
+  --accent-color: #804e49;
+  --text-color: #fbfaf8;
+  --highlight-color: #E7DECD;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,12 +19,18 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --splash-color: #77A07E;
+    --main-bg-color: #2D4739;
+    --secondary-color: #5E8EA5;
+    --accent-color: #804e49;
+    --text-color: #fbfaf8;
+    --highlight-color: #E7DECD;
   }
 }
 
 body {
-  background-color: #f1efe9;
-  color: #282828;
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
 }
 
 @layer utilities {
