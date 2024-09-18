@@ -158,12 +158,12 @@ export default function Home() {
         >
           AOKFrames Photography
         </div>
-        <ul className='w-[300px] text-[var(--accent-color)] flex justify-between items-center'>
-          <li>About Me</li>
-          <li>Galleries</li>
-          <li>Blog</li>
-          <li>Prints</li>
-          <li>Contact Me</li>
+        <ul className='w-[300px] text-[var(--splash-color)] font-bold flex justify-between items-center text-lg'>
+          <li><Link href='/about' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</Link></li>
+          <li><Link href='/' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</Link></li>
+          <li><Link href='/blog' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Blog</Link></li>
+          <li className='hover:text-[var(--highlight-color)] transition-colors duration-300 cursor-pointer'>Prints</li>
+          <li className='hover:text-[var(--highlight-color)] transition-colors duration-300 cursor-pointer'>Contact Me</li>
         </ul>
       </motion.nav>
 
@@ -182,7 +182,7 @@ export default function Home() {
           </motion.h1>
         </motion.div>
         <motion.p
-          className='absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[var(--text-color)] text-s font-medium'
+          className='absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[var(--text-color)] text-lg font-medium'
           variants={textParagraph}
           initial='hidden'
           animate='show'
