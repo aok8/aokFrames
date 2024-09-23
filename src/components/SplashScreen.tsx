@@ -15,7 +15,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
   };
 
   const animate = () => {
-    const desiredTotalDuration = 6000; // Total duration for the entire animation in milliseconds
+    const desiredTotalDuration = 4500; // Total duration for the entire animation in milliseconds
 
     // Original durations for each animation step
     const originalDurations = [
