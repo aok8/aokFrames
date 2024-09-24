@@ -158,12 +158,12 @@ export default function Home() {
         >
           AOKFrames Photography
         </div>
-        <ul className='w-[300px] text-[var(--splash-color)] font-bold flex justify-between items-center text-lg'>
+        <ul className='w-[300px] text-[var(--splash-color)] font-bold flex justify-between items-center text-lg ${pacifico.className}'>
           <li><Link href='/about' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</Link></li>
           <li><Link href='/' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</Link></li>
           <li><Link href='/blog' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Blog</Link></li>
-          <li className='hover:text-[var(--highlight-color)] transition-colors duration-300 cursor-pointer'>Prints</li>
-          <li className='hover:text-[var(--highlight-color)] transition-colors duration-300 cursor-pointer'>Contact Me</li>
+          <li><Link href='/prints' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Prints</Link></li>
+          <li><Link href='/contact' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Contact Me</Link></li>
         </ul>
       </motion.nav>
 
@@ -199,7 +199,7 @@ export default function Home() {
           animate='show'
         >
           <motion.h1
-            className='text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10'
+            className='text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10 ${pacifico.className}'
             variants={textAnimate2(100)}
           >
             EXPERIENCE
