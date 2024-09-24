@@ -182,7 +182,7 @@ export default function Home() {
           </motion.h1>
         </motion.div>
         <motion.p
-          className='absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[var(--text-color)] text-lg font-medium'
+          className={`absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[var(--text-color)] text-lg font-medium ${pacifico.className}`}
           variants={textParagraph}
           initial='hidden'
           animate='show'
