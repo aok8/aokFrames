@@ -176,9 +176,10 @@ export default function Home() {
         >
           <motion.h1
             className={`text-9xl text-[var(--accent-color)] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)' }}
             variants={textAnimate2(-150)}
           >
-            Learning from
+            Growth through
           </motion.h1>
         </motion.div>
         <motion.p
@@ -200,6 +201,7 @@ export default function Home() {
         >
           <motion.h1
             className='text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10 ${pacifico.className}'
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)' }}
             variants={textAnimate2(100)}
           >
             EXPERIENCE
