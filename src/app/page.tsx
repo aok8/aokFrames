@@ -13,7 +13,7 @@ const pacifico = Pacifico({
   display: 'swap',
 });
 
-export default function Home() {
+export default function Home() {dev/landingPageTrial1
   const [isNavigating, setIsNavigating] = useState(false);
   const router = useRouter();
 
@@ -149,7 +149,7 @@ export default function Home() {
     setIsNavigating(true);
     setTimeout(() => {
       router.push(path);
-    }, 500); // Adjust this delay to match your animation duration
+    }, 500); // Adjust this delay to match animation duration
   };
 
   return (
