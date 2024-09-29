@@ -5,6 +5,7 @@ import ShowPreLoad from '@/components/showPreLoad';
 import Image from 'next/image';
 import { Pacifico } from 'next/font/google';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 const pacifico = Pacifico({
   weight: '400',
@@ -13,6 +14,9 @@ const pacifico = Pacifico({
 });
 
 export default function Home() {
+  const [isNavigating, setIsNavigating] = useState(false);
+  const router = useRouter();
+
   const bgAnimate = {
     hidden: {
       clipPath: 'polygon(21% 26%, 77% 26%, 77% 77%, 21% 77%)',
@@ -123,13 +127,40 @@ export default function Home() {
     },
   };
 
+  const pageVariants = {
+    initial: { opacity: 0, x: '-100%' },
+    in: { opacity: 1, x: 0 },
+    out: { opacity: 0, x: '100%' },
+  };
+
+  const pageTransition = {
+    type: 'tween',
+    ease: 'anticipate',
+    duration: 0.5
+  };
+
+  const overlayVariants = {
+    initial: { x: '100%' },
+    animate: { x: 0 },
+    exit: { x: '-100%' },
+  };
+
+  const handleNavigation = (path: string) => {
+    setIsNavigating(true);
+    setTimeout(() => {
+      router.push(path);
+    }, 500); // Adjust this delay to match your animation duration
+  };
+
   return (
     <motion.main
-      className='h-screen px-4 overflow-hidden'
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+      className='h-screen px-4 overflow-hidden relative'
       style={{ backgroundColor: 'var(--main-bg-color)' }}
-      variants={fadeIn}
-      initial='hidden'
-      animate='show'
     >
       <motion.div
         className='absolute inset-0 w-screen h-screen z-0'
@@ -159,11 +190,11 @@ export default function Home() {
           AOKFrames Photography
         </div>
         <ul className='w-[300px] text-[var(--splash-color)] font-bold flex justify-between items-center text-lg ${pacifico.className}'>
-          <li><Link href='/about' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</Link></li>
-          <li><Link href='/' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</Link></li>
-          <li><Link href='/blog' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Blog</Link></li>
-          <li><Link href='/prints' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Prints</Link></li>
-          <li><Link href='/contact' className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Contact Me</Link></li>
+          <li><button onClick={() => handleNavigation('/about')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</button></li>
+          <li><button onClick={() => handleNavigation('/')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</button></li>
+          <li><button onClick={() => handleNavigation('/blog')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Blog</button></li>
+          <li><button onClick={() => handleNavigation('/prints')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Prints</button></li>
+          <li><button onClick={() => handleNavigation('/contact')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Contact Me</button></li>
         </ul>
       </motion.nav>
 
@@ -252,6 +283,20 @@ export default function Home() {
           />
         </motion.div>
       </motion.div>
+
+      <Link href="/blog" passHref>
+        <motion.a className="hover:text-[var(--highlight-color)] transition-colors duration-300">
+        </motion.a>
+      </Link>
+
+      <motion.div
+        className="fixed inset-0 bg-[var(--main-bg-color)] z-50"
+        variants={overlayVariants}
+        initial="initial"
+        animate={isNavigating ? "animate" : "initial"}
+        exit="exit"
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      />
     </motion.main>
   );
 }

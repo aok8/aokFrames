@@ -6,6 +6,7 @@ import { Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { usePathname } from "next/navigation";
 import SplashScreen from "@/components/SplashScreen";
+import { AnimatePresence } from 'framer-motion';
 
 const inter = Inter({ subsets: ["latin"] });
 const dancingScript = Dancing_Script({ subsets: ["latin"] });
@@ -26,13 +27,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={dancingScript.className}>
       <body>
-        {isLoading && isHome ? (
-          <SplashScreen finishLoading={() => setIsLoading(false)} />
-        ) : (
-          <>
-            {children}
-          </>
-        )}
+        <AnimatePresence mode="wait">
+          {isLoading && isHome ? (
+            <SplashScreen finishLoading={() => setIsLoading(false)} />
+          ) : (
+            <>
+              {children}
+            </>
+          )}
+        </AnimatePresence>
       </body>
     </html>
   );
