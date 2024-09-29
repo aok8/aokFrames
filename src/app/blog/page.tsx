@@ -113,7 +113,7 @@ export default function BlogPage() {
             animate='visible'
             exit='exit'
           >
-            <div className="w-full pr-4"> {/* Changed from container class to w-full */}
+            <div className="w-full pr-4"> {}
               <ul className={`flex flex-wrap justify-end text-[var(--text-color)] font-bold text-sm ${pacifico.className}`}>
                 {[
                   { href: '/', text: 'Home' },
@@ -123,7 +123,7 @@ export default function BlogPage() {
                   { href: '/prints', text: 'Prints' },
                   { href: '/contact', text: 'Contact' }
                 ].map((link, index, array) => (
-                  <li key={link.href} className={index === array.length - 1 ? 'pl-1' : 'px-1'}> {/* Changed to left padding */}
+                  <li key={link.href} className={index === array.length - 1 ? 'pl-1' : 'px-1'}> {}
                     <Link href={link.href} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>
                       {link.text}
                     </Link>
