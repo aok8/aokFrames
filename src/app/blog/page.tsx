@@ -96,50 +96,66 @@ export default function BlogPage() {
     }
   };
 
+  const pageVariants = {
+    initial: { opacity: 0, x: '100%' },
+    in: { opacity: 1, x: 0 },
+    out: { opacity: 0, x: '-100%' },
+  };
+
+  const pageTransition = {
+    type: 'tween',
+    ease: 'anticipate',
+    duration: 0.5
+  };
+
+  const overlayVariants = {
+    initial: { x: 0 },
+    animate: { x: '100%' },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen p-8"
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+      className="min-h-screen p-8 relative"
       style={{ backgroundColor: 'var(--main-bg-color)' }}
     >
-      <AnimatePresence>
-        {!hidden && (
-          <motion.div
-            className='fixed top-0 left-0 right-0 z-50 bg-[var(--secondary-color)] py-2'
-            variants={topBarAnimate}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
-          >
-            <div className="w-full pr-4"> {}
-              <ul className={`flex flex-wrap justify-end text-[var(--text-color)] font-bold text-sm ${pacifico.className}`}>
-                {[
-                  { href: '/', text: 'Home' },
-                  { href: '/about', text: 'About Me' },
-                  { href: '/galleries', text: 'Galleries' },
-                  { href: '/blog', text: 'Blog' },
-                  { href: '/prints', text: 'Prints' },
-                  { href: '/contact', text: 'Contact' }
-                ].map((link, index, array) => (
-                  <li key={link.href} className={index === array.length - 1 ? 'pl-1' : 'px-1'}> {}
-                    <Link href={link.href} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>
-                      {link.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      {!hidden && (
+        <motion.div
+          className='fixed top-0 left-0 right-0 z-50 bg-[var(--secondary-color)] py-2'
+          variants={topBarAnimate}
+          initial='hidden'
+          animate='visible'
+          exit='exit'
+        >
+          <div className="w-full pr-4">
+            <ul className={`flex flex-wrap justify-end text-[var(--text-color)] font-bold text-sm ${pacifico.className}`}>
+              {[
+                { href: '/', text: 'Home' },
+                { href: '/about', text: 'About Me' },
+                { href: '/galleries', text: 'Galleries' },
+                { href: '/blog', text: 'Blog' },
+                { href: '/prints', text: 'Prints' },
+                { href: '/contact', text: 'Contact' }
+              ].map((link, index, array) => (
+                <li key={link.href} className={index === array.length - 1 ? 'pl-1' : 'px-1'}>
+                  <Link href={link.href} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      )}
       <motion.h1 
         className="text-4xl font-bold mb-8 mt-16"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
       >
         Blog Posts
       </motion.h1>
@@ -147,12 +163,12 @@ export default function BlogPage() {
         {posts.map((post, index) => (
           <motion.li
             key={post.slug}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ 
               duration: 0.5, 
-              delay: 1 + index * 0.1, 
-              ease: "easeInOut" 
+              delay: 0.3 + index * 0.1, 
+              ease: "easeOut" 
             }}
           >
             <button
@@ -189,7 +205,7 @@ export default function BlogPage() {
                   }}
                   className="mt-4 bg-white bg-opacity-10 p-4 rounded overflow-hidden"
                 >
-                  <div ref={el => contentRefs.current[post.slug] = el}>
+                  <div ref={(el) => { if (el) contentRefs.current[post.slug] = el; }}>
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
                   </div>
                 </motion.div>
