@@ -186,10 +186,14 @@ export default function Home() {
       >
         <div
           className={`text-xl text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
+          style={{ fontSize: '1.5vw' }}
         >
           AOKFrames Photography
         </div>
-        <ul className='w-[300px] text-[var(--splash-color)] font-bold flex justify-between items-center text-lg ${pacifico.className}'>
+        <ul 
+        className='w-[300px] text-[var(--splash-color)] font-bold flex justify-between items-center text-lg ${pacifico.className} space-x-1 whitespace-nowrap'
+        style={{ fontSize: '1.5vw' }}
+        >
           <li><button onClick={() => handleNavigation('/about')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</button></li>
           <li><button onClick={() => handleNavigation('/')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</button></li>
           <li><button onClick={() => handleNavigation('/blog')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Blog</button></li>
@@ -207,7 +211,7 @@ export default function Home() {
         >
           <motion.h1
             className={`text-9xl text-[var(--accent-color)] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
-            style={{ textShadow: '2px 2px 4px var(--highlight-color)' }}
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw' }}
             variants={textAnimate2(-150)}
           >
             Growth through
@@ -219,10 +223,19 @@ export default function Home() {
           initial='hidden'
           animate='show'
         >
-          <span className='text-[var(--highlight-color)]'>
+          <span 
+          className='text-[var(--highlight-color)]'
+          style={{ fontSize: '1vw' }}
+          >
             I am a Seattle based photographer shooting both digital and film.
-          </span>{' '}
-          Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
+          </span>
+          <br />
+          <span 
+          className='text-[var(--text-color)]'
+          style={{ fontSize: '1vw' }}
+          >
+            Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
+          </span>
         </motion.p>
         <motion.div
           className='relative left-[25%]'
@@ -232,7 +245,7 @@ export default function Home() {
         >
           <motion.h1
             className='text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10 ${pacifico.className}'
-            style={{ textShadow: '2px 2px 4px var(--highlight-color)' }}
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw'  }}
             variants={textAnimate2(100)}
           >
             EXPERIENCE
