@@ -115,8 +115,8 @@ export default function Home() {
       y: '0%',
     }),
     final: (i: number) => ({
-      x: `calc(-30vw + ${i}px)`,
-      y: '-30vh',
+      x: `clamp(-30vw, calc(-30vw + ${i}px), -10vw)`,
+      y: 'clamp(-30vh, -30vh, -10vh)',
       scale: 1,
     }),
   };
