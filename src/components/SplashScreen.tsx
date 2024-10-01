@@ -7,8 +7,15 @@ import SplashLogo from './SplashLogo';
 const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
   const [isMounted, setIsMounted] = useState(false);
 
+  const getCSSVariableValue = (variable: string) => { //animejs doesn't support css variables
+    if (typeof window !== 'undefined') {
+      return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+    }
+    return '';
+  };
+
   const animate = () => {
-    const desiredTotalDuration = 6000; // Total duration for the entire animation in milliseconds
+    const desiredTotalDuration = 4500; // Total duration for the entire animation in milliseconds
 
     // Original durations for each animation step
     const originalDurations = [
@@ -23,6 +30,8 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
 
     // Scale each original duration
     const scaledDurations = originalDurations.map(duration => duration * scalingFactor);
+
+    const mainBgColor = getCSSVariableValue('--main-bg-color');
 
     anime.timeline({
       easing: 'easeInOutSine',
@@ -181,7 +190,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
     }, '+=50')
     .add({
       targets: '#splashScreen',
-      backgroundColor: '#f1efe9',
+      backgroundColor: mainBgColor,
       duration: 2000, // Duration over which the color change occurs
       easing: 'linear',  // Use a linear easing for smooth color transition
       endDelay: 1000 // This will wait before hiding the element
@@ -204,7 +213,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading: () => void }) => {
       justifyContent: "center", 
       alignItems: "center", 
       alignContent: "center",
-      backgroundColor: "#77A07E"}}>
+      backgroundColor: '#77A07E'}}>
       <SplashLogo/>
     </div>
   );
