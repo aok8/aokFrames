@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import ShowPreLoad from '@/components/showPreLoad';
 import Image from 'next/image';
 import { Pacifico } from 'next/font/google';
-import { motion } from 'framer-motion';
+import { DynamicAnimationOptions, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import AnimateTimeline from '@/components/AnimateTimeline';
 
 const pacifico = Pacifico({
   weight: '400',
@@ -23,11 +24,6 @@ export default function Home() {
     },
     show: {
       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-      transition: {
-        ease: 'easeInOut',
-        duration: 0.8,
-        delay: 1,
-      },
     },
   };
 
@@ -152,6 +148,40 @@ export default function Home() {
     }, 500); // Adjust this delay to match animation duration
   };
 
+  const titleAnimate = {
+    initial: {
+      x: '0%',
+      y: '0%',
+      scale: 1,
+    },
+    split: (i: number) => ({
+      x: `${i}px`,
+      y: '0%',
+    }),
+    final: (i: number) => ({
+      x: `calc(-30vw + ${i}px)`,
+      y: '-30vh',
+      scale: 1,
+    }),
+  };
+
+  const combinedKeyframes = [
+    [
+      ['.sig-1', titleAnimate.initial],
+      ['.sig-2', titleAnimate.initial],
+      ['.bg-animate', bgAnimate.hidden],
+    ],
+    [
+      ['.sig-1', titleAnimate.split(-100), { duration: 0.8, delay: 1 }],
+      ['.sig-2', titleAnimate.split(100), { duration: 0.8, delay: 1 }],
+    ],
+    [
+      ['.sig-1', titleAnimate.final(-100), { duration: 1.6, delay: 0.2 }],
+      ['.sig-2', titleAnimate.final(100), { duration: 1.6, delay: 0.2 }],
+      ['.bg-animate', bgAnimate.show, { duration: 1.6, delay: 0.2 }],
+    ],
+  ];
+
   return (
     <motion.main
       initial="initial"
@@ -162,21 +192,35 @@ export default function Home() {
       className='h-screen px-4 overflow-hidden relative'
       style={{ backgroundColor: 'var(--main-bg-color)' }}
     >
-      <motion.div
-        className='absolute inset-0 w-screen h-screen z-0'
-        variants={bgAnimate}
-        initial='hidden'
-        animate='show'
-      >
-        <Image
-          src='/img/bg.jpg'
-          alt='background'
-          fill
-          sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
-          priority={true}
-          className='object-cover brightness-50'
-        />
-      </motion.div>
+      <AnimateTimeline keyframes={combinedKeyframes}>
+        <motion.div
+          className='bg-animate absolute inset-0 w-screen h-screen z-0'
+        >
+          <Image
+            src='/img/bg.jpg'
+            alt='background'
+            fill
+            sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
+            priority={true}
+            className='object-cover brightness-50'
+          />
+        </motion.div>
+
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <motion.h1
+            className={`sig-1 text-9xl text-[var(--accent-color)] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw' }}
+          >
+            Growth through
+          </motion.h1>
+          <motion.h1
+            className={`sig-2 text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10 ${pacifico.className}`}
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw' }}
+          >
+            EXPERIENCE
+          </motion.h1>
+        </div>
+      </AnimateTimeline>
 
       <motion.nav
         className='flex justify-between items-center text-white relative z-10 pt-4'
@@ -185,7 +229,7 @@ export default function Home() {
         animate='show'
       >
         <div
-          className={`text-xl text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
+          className={`tm-1 text-xl text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
           style={{ fontSize: '1.5vw' }}
         >
           AOKFrames Photography
@@ -201,22 +245,8 @@ export default function Home() {
           <li><button onClick={() => handleNavigation('/contact')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Contact Me</button></li>
         </ul>
       </motion.nav>
-
+      
       <div className='relative top-[120px]'>
-        <motion.div
-          className='relative left-[25%]'
-          variants={textAnimate1}
-          initial='hidden'
-          animate='show'
-        >
-          <motion.h1
-            className={`text-9xl text-[var(--accent-color)] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
-            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw' }}
-            variants={textAnimate2(-150)}
-          >
-            Growth through
-          </motion.h1>
-        </motion.div>
         <motion.p
           className={`absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[var(--text-color)] text-lg font-medium ${pacifico.className}`}
           variants={textParagraph}
@@ -237,20 +267,6 @@ export default function Home() {
             Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
           </span>
         </motion.p>
-        <motion.div
-          className='relative left-[25%]'
-          variants={textAnimate1}
-          initial='hidden'
-          animate='show'
-        >
-          <motion.h1
-            className='text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10 ${pacifico.className}'
-            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw'  }}
-            variants={textAnimate2(100)}
-          >
-            EXPERIENCE
-          </motion.h1>
-        </motion.div>
       </div>
 
       <motion.div
