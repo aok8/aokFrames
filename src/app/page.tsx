@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ShowPreLoad from '@/components/showPreLoad';
 import Image from 'next/image';
 import { Pacifico } from 'next/font/google';
-import { DynamicAnimationOptions, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import AnimateTimeline from '@/components/AnimateTimeline';
 
@@ -26,36 +26,6 @@ export default function Home() {
       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
     },
   };
-
-  const textAnimate1 = {
-    hidden: {
-      y: '100%',
-      opacity: 0,
-    },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        ease: 'easeInOut',
-        duration: 0.8,
-        staggerChildren: 0.4,
-        delayChildren: 1,
-      },
-    },
-  };
-
-  const textAnimate2 = (i: number) => ({
-    hidden: {
-      x: 0,
-    },
-    show: {
-      x: i,
-      transition: {
-        ease: 'easeOut',
-        duration: 0.8,
-      },
-    },
-  });
 
   const imageAnimate = {
     hidden: {},
@@ -85,14 +55,11 @@ export default function Home() {
   const navAnimate = {
     hidden: {
       y: '-110%',
+      opacity: 0,
     },
     show: {
       y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 60,
-        delay: 2,
-      },
+      opacity: 1,
     },
   };
 
@@ -112,17 +79,6 @@ export default function Home() {
     },
   };
 
-  const fadeIn = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        duration: 1.5, // Adjust duration as needed
-        ease: 'easeInOut',
-      },
-    },
-  };
-
   const pageVariants = {
     initial: { opacity: 0, x: '-100%' },
     in: { opacity: 1, x: 0 },
@@ -132,7 +88,7 @@ export default function Home() {
   const pageTransition = {
     type: 'tween',
     ease: 'anticipate',
-    duration: 0.5
+    duration: 0.5,
   };
 
   const overlayVariants = {
@@ -145,7 +101,7 @@ export default function Home() {
     setIsNavigating(true);
     setTimeout(() => {
       router.push(path);
-    }, 500); // Adjust this delay to match animation duration
+    }, 500); 
   };
 
   const titleAnimate = {
@@ -170,15 +126,25 @@ export default function Home() {
       ['.sig-1', titleAnimate.initial],
       ['.sig-2', titleAnimate.initial],
       ['.bg-animate', bgAnimate.hidden],
+      ['nav', navAnimate.hidden],
+      ['.tm-1', navAnimate.hidden],
+      ['.summary', textParagraph.hidden],
+      ['.pic-3', imageAnimate.hidden],
     ],
     [
-      ['.sig-1', titleAnimate.split(-100), { duration: 0.8, delay: 1 }],
-      ['.sig-2', titleAnimate.split(100), { duration: 0.8, delay: 1 }],
+      ['.sig-1', titleAnimate.split(-100), { duration: 0.8, delay: 0.2 }],
+      ['.sig-2', titleAnimate.split(100), { duration: 0.8, delay: 0.2 }],
     ],
     [
       ['.sig-1', titleAnimate.final(-100), { duration: 1.6, delay: 0.2 }],
       ['.sig-2', titleAnimate.final(100), { duration: 1.6, delay: 0.2 }],
       ['.bg-animate', bgAnimate.show, { duration: 1.6, delay: 0.2 }],
+    ],
+    [
+      ['nav', navAnimate.show, { duration: 0.8, delay: 0.2 }],
+      ['.tm-1', navAnimate.show, { duration: 0.8, delay: 0.2 }],
+      ['.summary', textParagraph.show],
+      ['.pic-3', imageAnimate.show],
     ],
   ];
 
@@ -220,98 +186,95 @@ export default function Home() {
             EXPERIENCE
           </motion.h1>
         </div>
-      </AnimateTimeline>
 
-      <motion.nav
-        className='flex justify-between items-center text-white relative z-10 pt-4 px-4 w-full'
-        variants={navAnimate}
-        initial='hidden'
-        animate='show'
-      >
-        <div
-          className={`tm-1 text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
-          style={{ fontSize: 'clamp(16px, 2vw, 24px)' }}
+        <motion.nav
+          className='flex justify-between items-center text-white relative z-10 pt-4 px-4 w-full'
         >
-          AOKFrames Photography
+          <motion.div
+            className={`tm-1 text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
+            style={{ fontSize: 'clamp(16px, 2vw, 24px)' }}
+          >
+            AOKFrames Photography
+          </motion.div>
+          <ul 
+            className={`nav text-[var(--splash-color)] font-bold flex justify-between items-center space-x-2 ${pacifico.className}`}
+            style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}
+          >
+            <li><button onClick={() => handleNavigation('/about')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</button></li>
+            <li><button onClick={() => handleNavigation('/')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</button></li>
+            <li><button onClick={() => handleNavigation('/blog')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Blog</button></li>
+            <li><button onClick={() => handleNavigation('/prints')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Prints</button></li>
+            <li><button onClick={() => handleNavigation('/contact')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Contact Me</button></li>
+          </ul>
+        </motion.nav>
+
+        <div className='relative top-[120px]'>
+          <motion.p
+            className={`summary absolute top-12 right-32 z-10 w-[clamp(300px,30vw,500px)] text-justify leading-5 text-[var(--text-color)] font-medium ${pacifico.className}`}
+            variants={textParagraph}
+            initial='hidden'
+            animate='show'
+          >
+            <span 
+              className='text-[var(--highlight-color)]'
+              style={{ fontSize: 'clamp(12px, 1.2vw, 18px)' }}
+            >
+              I am a Seattle based photographer shooting both digital and film.
+            </span>
+            <br />
+            <span 
+              className='text-[var(--text-color)]'
+              style={{ fontSize: 'clamp(12px, 1.2vw, 18px)' }}
+            >
+              Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
+            </span>
+          </motion.p>
         </div>
-        <ul 
-          className={`text-[var(--splash-color)] font-bold flex justify-between items-center space-x-2 ${pacifico.className}`}
-          style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}
-        >
-          <li><button onClick={() => handleNavigation('/about')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</button></li>
-          <li><button onClick={() => handleNavigation('/')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</button></li>
-          <li><button onClick={() => handleNavigation('/blog')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Blog</button></li>
-          <li><button onClick={() => handleNavigation('/prints')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Prints</button></li>
-          <li><button onClick={() => handleNavigation('/contact')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Contact Me</button></li>
-        </ul>
-      </motion.nav>
-      
-      <div className='relative top-[120px]'>
-        <motion.p
-          className={`absolute top-12 right-32 z-10 w-[clamp(300px,30vw,500px)] text-justify leading-5 text-[var(--text-color)] font-medium ${pacifico.className}`}
-          variants={textParagraph}
+
+        <motion.div
+          className='pic-3 flex gap-4 absolute bottom-4'
+          variants={imageAnimate}
           initial='hidden'
           animate='show'
         >
-          <span 
-            className='text-[var(--highlight-color)]'
-            style={{ fontSize: 'clamp(12px, 1.2vw, 18px)' }}
+          <motion.div
+            className='relative w-[300px] h-[200px]'
+            variants={imageAnimateChild}
           >
-            I am a Seattle based photographer shooting both digital and film.
-          </span>
-          <br />
-          <span 
-            className='text-[var(--text-color)]'
-            style={{ fontSize: 'clamp(12px, 1.2vw, 18px)' }}
+            <Image
+              src='/img/img-1.jpg'
+              alt='img-1'
+              fill
+              sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
+              className='object-cover rounded-sm saturate-150'
+            />
+          </motion.div>
+          <motion.div
+            className='relative w-[300px] h-[200px]'
+            variants={imageAnimateChild}
           >
-            Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
-          </span>
-        </motion.p>
-      </div>
-
-      <motion.div
-        className='flex gap-4 absolute bottom-4'
-        variants={imageAnimate}
-        initial='hidden'
-        animate='show'
-      >
-        <motion.div
-          className='relative w-[300px] h-[200px]'
-          variants={imageAnimateChild}
-        >
-          <Image
-            src='/img/img-1.jpg'
-            alt='img-1'
-            fill
-            sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
-            className='object-cover rounded-sm saturate-150'
-          />
+            <Image
+              src='/img/img-2.jpg'
+              alt='img-2'
+              fill
+              sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
+              className='object-cover rounded-sm saturate-150'
+            />
+          </motion.div>
+          <motion.div
+            className='relative w-[300px] h-[200px]'
+            variants={imageAnimateChild}
+          >
+            <Image
+              src='/img/img-3.jpg'
+              alt='img-3'
+              fill
+              sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
+              className='object-cover rounded-sm saturate-150'
+            />
+          </motion.div>
         </motion.div>
-        <motion.div
-          className='relative w-[300px] h-[200px]'
-          variants={imageAnimateChild}
-        >
-          <Image
-            src='/img/img-2.jpg'
-            alt='img-2'
-            fill
-            sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
-            className='object-cover rounded-sm saturate-150'
-          />
-        </motion.div>
-        <motion.div
-          className='relative w-[300px] h-[200px]'
-          variants={imageAnimateChild}
-        >
-          <Image
-            src='/img/img-3.jpg'
-            alt='img-3'
-            fill
-            sizes='(max-width:768px) 33vw, (max-width:1024px) 50vw, 100vw'
-            className='object-cover rounded-sm saturate-150'
-          />
-        </motion.div>
-      </motion.div>
+      </AnimateTimeline>
 
       <Link href="/blog" passHref>
         <motion.a className="hover:text-[var(--highlight-color)] transition-colors duration-300">
