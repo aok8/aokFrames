@@ -189,7 +189,7 @@ export default function Home() {
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
-      className='h-screen px-4 overflow-hidden relative'
+      className='h-screen w-screen px-4 overflow-hidden relative'
       style={{ backgroundColor: 'var(--main-bg-color)' }}
     >
       <AnimateTimeline keyframes={combinedKeyframes}>
@@ -209,13 +209,13 @@ export default function Home() {
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <motion.h1
             className={`sig-1 text-9xl text-[var(--accent-color)] lowercase tracking-tighter font-semibold z-10 ${pacifico.className}`}
-            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw' }}
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: 'clamp(24px, 4vw, 60px)' }}
           >
             Growth through
           </motion.h1>
           <motion.h1
             className={`sig-2 text-9xl text-[var(--splash-color)] font-semibold tracking-tighter z-10 ${pacifico.className}`}
-            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: '4vw' }}
+            style={{ textShadow: '2px 2px 4px var(--highlight-color)', fontSize: 'clamp(24px, 4vw, 60px)' }}
           >
             EXPERIENCE
           </motion.h1>
@@ -223,20 +223,20 @@ export default function Home() {
       </AnimateTimeline>
 
       <motion.nav
-        className='flex justify-between items-center text-white relative z-10 pt-4'
+        className='flex justify-between items-center text-white relative z-10 pt-4 px-4 w-full'
         variants={navAnimate}
         initial='hidden'
         animate='show'
       >
         <div
-          className={`tm-1 text-xl text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
-          style={{ fontSize: '1.5vw' }}
+          className={`tm-1 text-[var(--splash-color)] font-bold underline ${pacifico.className}`}
+          style={{ fontSize: 'clamp(16px, 2vw, 24px)' }}
         >
           AOKFrames Photography
         </div>
         <ul 
-        className='w-[300px] text-[var(--splash-color)] font-bold flex justify-between items-center text-lg ${pacifico.className} space-x-1 whitespace-nowrap'
-        style={{ fontSize: '1.5vw' }}
+          className={`text-[var(--splash-color)] font-bold flex justify-between items-center space-x-2 ${pacifico.className}`}
+          style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}
         >
           <li><button onClick={() => handleNavigation('/about')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>About Me</button></li>
           <li><button onClick={() => handleNavigation('/')} className='hover:text-[var(--highlight-color)] transition-colors duration-300'>Galleries</button></li>
@@ -248,21 +248,21 @@ export default function Home() {
       
       <div className='relative top-[120px]'>
         <motion.p
-          className={`absolute top-12 right-32 z-10 w-[500px] text-justify leading-5 text-[var(--text-color)] text-lg font-medium ${pacifico.className}`}
+          className={`absolute top-12 right-32 z-10 w-[clamp(300px,30vw,500px)] text-justify leading-5 text-[var(--text-color)] font-medium ${pacifico.className}`}
           variants={textParagraph}
           initial='hidden'
           animate='show'
         >
           <span 
-          className='text-[var(--highlight-color)]'
-          style={{ fontSize: '1vw' }}
+            className='text-[var(--highlight-color)]'
+            style={{ fontSize: 'clamp(12px, 1.2vw, 18px)' }}
           >
             I am a Seattle based photographer shooting both digital and film.
           </span>
           <br />
           <span 
-          className='text-[var(--text-color)]'
-          style={{ fontSize: '1vw' }}
+            className='text-[var(--text-color)]'
+            style={{ fontSize: 'clamp(12px, 1.2vw, 18px)' }}
           >
             Photography is an important part of my life, and I'm constantly trying to both improve my skills as well as invoke feelings in others through my work.
           </span>
