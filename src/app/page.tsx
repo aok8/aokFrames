@@ -210,7 +210,8 @@ export default function Home() {
 
         <div className='relative top-[120px]'>
           <motion.p
-            className={`summary absolute top-12 right-32 z-10 w-[clamp(300px,30vw,500px)] text-justify leading-5 text-[var(--text-color)] font-medium ${pacifico.className}`}
+            className={`summary absolute z-10 w-[clamp(300px,30vw,500px)] text-justify leading-5 text-[var(--text-color)] font-medium ${pacifico.className}`}
+            style={{ top: 'clamp(8px, 10%, 12px)', right: 'clamp(8px, 10%, 12px)' }}
             variants={textParagraph}
             initial='hidden'
             animate='show'
