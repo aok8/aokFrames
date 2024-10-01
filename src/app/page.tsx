@@ -13,7 +13,7 @@ const pacifico = Pacifico({
   display: 'swap',
 });
 
-export default function Home() {dev/landingPageTrial1
+export default function Home() {
   const [isNavigating, setIsNavigating] = useState(false);
   const router = useRouter();
 
