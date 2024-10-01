@@ -32,7 +32,7 @@ export default function Home() {
     show: {
       transition: {
         staggerChildren: 0.3,
-        delayChildren: 3.6,
+        delayChildren: 5.6,
         ease: [0.25, 0.4, 0.25, 1],
       },
     },
@@ -74,7 +74,6 @@ export default function Home() {
       transition: {
         type: 'spring',
         stiffness: 60,
-        delay: 2.8,
       },
     },
   };
@@ -143,8 +142,12 @@ export default function Home() {
     [
       ['nav', navAnimate.show, { duration: 0.8, delay: 0.2 }],
       ['.tm-1', navAnimate.show, { duration: 0.8, delay: 0.2 }],
-      ['.summary', textParagraph.show],
-      ['.pic-3', imageAnimate.show],
+    ],
+    [
+      ['.summary', textParagraph.show, { duration: 0.8, delay: 0.4 }],
+    ],
+    [
+      ['.pic-3', imageAnimate.show, { duration: 0.8, delay: 1.6 }],
     ],
   ];
 
@@ -278,8 +281,9 @@ export default function Home() {
       </AnimateTimeline>
 
       <Link href="/blog" passHref>
-        <motion.a className="hover:text-[var(--highlight-color)] transition-colors duration-300">
-        </motion.a>
+        <motion.div className="hover:text-[var(--highlight-color)] transition-colors duration-300">
+          <span className="sr-only">Blog</span>
+        </motion.div>
       </Link>
 
       <motion.div
