@@ -1,14 +1,20 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import DynamicYears from '@/components/DynamicYears';
+import { getBlogPosts } from '@/utils/blogUtils';
+import BlogCard from '@/components/BlogCard';
 
-export default function Gallery() {
+export default async function BlogPage() {
+  const blogPosts = await getBlogPosts();
+
   return (
-    <main className="Gallery font-dancing-script">
-      <div>
-        <h1>Gallery Page</h1>
-        <Link href="/">Back to Home</Link>
-        <DynamicYears/>
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-8">Blog</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {blogPosts.map((post) => (
+          <BlogCard key={post.slug} post={post} />
+        ))}
       </div>
     </main>
   );
