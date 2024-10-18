@@ -38,6 +38,12 @@
     font-display: swap;
   }
 
+.blog-background {
+min-height: 100vh;
+min-width: 100vw;
+background-color: var(--blog-full-bg-color);
+}
+
 .blog-card-wrapper {
   position: relative;
   width: 320px; /* Adjusted width to allow peeking */

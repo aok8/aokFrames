@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ShowPreLoad from '@/components/showPreLoad';
 import Image from 'next/image';
 import { Pacifico } from 'next/font/google';
@@ -16,6 +16,7 @@ const pacifico = Pacifico({
 
 export default function Home() {
   const [isNavigating, setIsNavigating] = useState(false);
+  const [bgColor, setBgColor] = useState('var(--default-bg-color)');
   const router = useRouter();
 
   const bgAnimate = {
@@ -98,9 +99,19 @@ export default function Home() {
 
   const handleNavigation = (path: string) => {
     setIsNavigating(true);
+
+    // Set the background color based on the path
+    switch (path) {
+      case '/blog':
+        setBgColor('var(--blog-full-bg-color)');
+        break;
+      default:
+        setBgColor('var(--splash-color)');
+    }
+
     setTimeout(() => {
       router.push(path);
-    }, 500); 
+    }, 500);
   };
 
   const titleAnimate = {
@@ -287,7 +298,8 @@ export default function Home() {
       </Link>
 
       <motion.div
-        className="fixed inset-0 bg-[var(--main-bg-color)] z-50"
+        className="fixed inset-0 z-50"
+        style={{ backgroundColor: bgColor }}
         variants={overlayVariants}
         initial="initial"
         animate={isNavigating ? "animate" : "initial"}
