@@ -12,6 +12,9 @@
   --accent-color: #804e49;
   --text-color: #fbfaf8;
   --highlight-color: #E7DECD;
+  --blog-bg-color: #004953;
+  --blog-text-color: #ACE1AF;
+  --blog-full-bg-color: #78A1BB;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +28,9 @@
     --accent-color: #804e49;
     --text-color: #fbfaf8;
     --highlight-color: #E7DECD;
+    --blog-bg-color: #004953;
+    --blog-text-color: #ACE1AF;
+    --blog-full-bg-color: #78A1BB;
   }
 }
 

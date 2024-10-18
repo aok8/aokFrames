@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -19,34 +18,28 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <Link href={`/blog/${post.slug}`}>
-      <motion.div
-        className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
-        whileHover={{ scale: 1.05 }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
-      >
-        <div className="relative h-48">
-          <Image
-            src={post.coverImage}
-            alt={post.title}
-            layout="fill"
-            objectFit="cover"
-          />
-        </div>
+      <div className="blog-card-wrapper">
         <motion.div
-          className="p-4"
-          animate={{ height: isHovered ? 'auto' : '150px' }}
+          className="blog-card cursor-pointer"
+          whileHover={{ scale: 1.05 }}
         >
-          <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-          <p className="text-gray-600 mb-2">{post.date}</p>
-          <p className="text-sm text-gray-500 mb-2">{post.category}</p>
-          <p className="text-gray-700">{post.excerpt}</p>
+          <div className="title-card">
+            <h2 className="text-xl font-semibold">{post.title}</h2>
+          </div>
+          <div className="image-container">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              layout="responsive" /* Use responsive to maintain aspect ratio */
+              width={500}
+              height={300}
+              className="cover-image"
+            />
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </Link>
   );
 }

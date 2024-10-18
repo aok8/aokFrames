@@ -3,7 +3,7 @@ title: "Sample Blog Post"
 date: "2024-03-15"
 category: "Technology"
 excerpt: "This is a sample blog post to demonstrate how the blog system works."
-coverImage: "/images/sample-cover.jpg"
+coverImage: "/img/bg.jpg"
 ---
 
 # Sample Blog Post
